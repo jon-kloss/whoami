@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jon Kloss Portfolio — Design Overview</title>
+<style>
+  :root {
+    --text: #1a2e1a;
+    --text-muted: #5a6e5a;
+    --bg: #f8faf8;
+    --surface: #f0f4f0;
+    --border: #dde5dd;
+    --accent: #2d6a3f;
+    --accent-light: #e8f0eb;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Header */
+  header {
+    padding: 3rem 0 2rem;
+    border-bottom: 2px solid var(--accent);
+  }
+
+  header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    color: var(--text-muted);
+    font-size: 1.0625rem;
+    max-width: 55ch;
+  }
+
+  .meta-bar {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Section */
+  section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  section h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  section h3:first-of-type { margin-top: 0; }
+
+  section p {
+    margin-bottom: 0.75rem;
+    max-width: 65ch;
+  }
+
+  /* Feature list */
+  .feature-list {
+    list-style: none;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .feature-number {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 0.125rem 0.375rem;
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .feature-name {
+    font-weight: 600;
+    margin-bottom: 0.125rem;
+  }
+
+  .feature-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.125rem 0.375rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  .badge-approved {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  /* Architecture diagram (inline HTML/CSS) */
+  .arch-diagram {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .arch-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .arch-row:last-child { margin-bottom: 0; }
+
+  .arch-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    width: 90px;
+    flex-shrink: 0;
+    text-align: right;
+    padding-right: 0.5rem;
+  }
+
+  .arch-boxes {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .arch-box {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .arch-box.content { background: #f3e8f9; border-color: #c9a4d6; color: #6b3a7d; }
+  .arch-box.build { background: #e8f4e8; border-color: #82b366; color: #3a6b3a; }
+  .arch-box.page { background: #e8f0f8; border-color: #6c8ebf; color: #3a5a7d; }
+  .arch-box.external { background: #fdf5e0; border-color: #d6b656; color: #7d6a2e; }
+
+  .arch-arrow {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    padding: 0.25rem 0;
+    margin-left: 90px;
+  }
+
+  /* Build order */
+  .build-order {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.8;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.25rem 1.5rem;
+    margin: 1rem 0;
+    white-space: pre;
+    overflow-x: auto;
+  }
+
+  /* Decisions table */
+  .decisions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin: 1rem 0;
+  }
+
+  .decisions-table th {
+    text-align: left;
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 2px solid var(--accent);
+    font-size: 0.8125rem;
+  }
+
+  .decisions-table td {
+    padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .decisions-table td:first-child {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  /* Tech stack */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+
+  .tech-item {
+    padding: 0.5rem 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    font-size: 0.875rem;
+  }
+
+  .tech-item strong {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin-bottom: 0.125rem;
+  }
+
+  /* UI Preview */
+  .ui-preview {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 1.25rem;
+    margin: 1rem 0;
+  }
+
+  .ui-preview-label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .ui-preview p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .color-swatches {
+    display: flex;
+    gap: 0.375rem;
+    margin: 0.75rem 0;
+  }
+
+  .swatch {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .swatch-label {
+    font-family: var(--font-mono);
+    font-size: 0.5625rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+    text-align: center;
+    display: block;
+  }
+
+  /* Glossary */
+  .glossary {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0.25rem 1rem;
+    font-size: 0.875rem;
+    margin: 1rem 0;
+  }
+
+  .glossary dt {
+    font-weight: 600;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    padding: 0.25rem 0;
+  }
+
+  .glossary dd {
+    color: var(--text-muted);
+    padding: 0.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Print */
+  @media print {
+    body { font-size: 11pt; }
+    .container { max-width: 100%; padding: 0; }
+    header, section { break-inside: avoid; }
+    .arch-diagram, .build-order { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+  <h1>Jon Kloss Portfolio</h1>
+  <p>Personal developer portfolio and blog. A statically-generated site built with Next.js, deployed to GitHub Pages. Six pages showcasing projects, blog posts, and professional experience.</p>
+  <div class="meta-bar">
+    <span>7 specs approved</span>
+    <span>39 scenarios</span>
+    <span>May 2026</span>
+  </div>
+</header>
+
+<section>
+  <h2>Features</h2>
+  <ul class="feature-list">
+    <li class="feature-item">
+      <span class="feature-number">SYS</span>
+      <div>
+        <div class="feature-name">System Foundation <span class="badge badge-approved">approved</span></div>
+        <div class="feature-desc">Next.js 14 with static export, CSS Modules with design tokens, Markdown content pipeline, GitHub Pages deployment via Actions.</div>
+      </div>
+    </li>
+    <li class="feature-item">
+      <span class="feature-number">01</span>
+      <div>
+        <div class="feature-name">Site Layout &amp; Theming <span class="badge badge-approved">approved</span></div>
+        <div class="feature-desc">Shared navigation (hides on scroll down, shows on scroll up), footer, dark/light theme toggle with localStorage persistence and system preference detection.</div>
+      </div>
+    </li>
+    <li class="feature-item">
+      <span class="feature-number">02</span>
+      <div>
+        <div class="feature-name">Blog <span class="badge badge-approved">approved</span></div>
+        <div class="feature-desc">Markdown blog posts with frontmatter. Listing page with featured post treatment. Individual post pages with syntax-highlighted code blocks.</div>
+      </div>
+    </li>
+    <li class="feature-item">
+      <span class="feature-number">03</span>
+      <div>
+        <div class="feature-name">Projects Showcase <span class="badge badge-approved">approved</span></div>
+        <div class="feature-desc">Curated project highlights from a JSON data file, plus open-source repos pulled from the GitHub API at build time. Graceful fallback if API is unavailable.</div>
+      </div>
+    </li>
+    <li class="feature-item">
+      <span class="feature-number">04</span>
+      <div>
+        <div class="feature-name">About &amp; Resume <span class="badge badge-approved">approved</span></div>
+        <div class="feature-desc">About page with bio and social links. Resume page with experience timeline, skills section, and downloadable PDF.</div>
+      </div>
+    </li>
+    <li class="feature-item">
+      <span class="feature-number">05</span>
+      <div>
+        <div class="feature-name">Contact Form <span class="badge badge-approved">approved</span></div>
+        <div class="feature-desc">Contact form powered by Formspree. Name, email, and message fields with native HTML validation. Success/error feedback on submission.</div>
+      </div>
+    </li>
+    <li class="feature-item">
+      <span class="feature-number">06</span>
+      <div>
+        <div class="feature-name">Home Page <span class="badge badge-approved">approved</span></div>
+        <div class="feature-desc">Full-viewport hero with name and CTA. Featured projects, latest blog posts, and contact form. Scroll-triggered reveal animations.</div>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <h2>Architecture</h2>
+  <p>The site follows a build-time rendering model. All content is processed during <code>next build</code>, producing static HTML files served by GitHub Pages. No server runs at request time.</p>
+
+  <div class="arch-diagram">
+    <div class="arch-row">
+      <span class="arch-label">Content</span>
+      <div class="arch-boxes">
+        <span class="arch-box content">posts/*.md</span>
+        <span class="arch-box content">projects.json</span>
+        <span class="arch-box content">resume.json</span>
+      </div>
+    </div>
+    <div class="arch-arrow">&darr; processed at build time</div>
+    <div class="arch-row">
+      <span class="arch-label">Build</span>
+      <div class="arch-boxes">
+        <span class="arch-box build">lib/posts.ts</span>
+        <span class="arch-box build">lib/projects.ts</span>
+        <span class="arch-box build">lib/github.ts</span>
+      </div>
+    </div>
+    <div class="arch-arrow">&darr; renders pages</div>
+    <div class="arch-row">
+      <span class="arch-label">Pages</span>
+      <div class="arch-boxes">
+        <span class="arch-box page">/</span>
+        <span class="arch-box page">/blog</span>
+        <span class="arch-box page">/blog/[slug]</span>
+        <span class="arch-box page">/projects</span>
+        <span class="arch-box page">/about</span>
+        <span class="arch-box page">/resume</span>
+        <span class="arch-box page">/contact</span>
+      </div>
+    </div>
+    <div class="arch-arrow">&darr; static export</div>
+    <div class="arch-row">
+      <span class="arch-label">Deploy</span>
+      <div class="arch-boxes">
+        <span class="arch-box external">GitHub Actions</span>
+        <span class="arch-box external">&rarr;</span>
+        <span class="arch-box external">GitHub Pages</span>
+      </div>
+    </div>
+    <div class="arch-row" style="margin-top: 1rem;">
+      <span class="arch-label">Runtime</span>
+      <div class="arch-boxes">
+        <span class="arch-box external">Formspree (contact form)</span>
+        <span class="arch-box external">GitHub API (build-time only)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Build Order</h2>
+  <p>Features are built in dependency order. Four features can be built in parallel after the layout is complete.</p>
+  <div class="build-order">system
+  └─ site-layout
+     ├─ blog              ┐
+     ├─ projects-showcase  │ parallel
+     ├─ about-resume       │
+     └─ contact-form      ┘
+        └─ home-page       (depends on blog + projects)</div>
+</section>
+
+<section>
+  <h2>UI Direction</h2>
+
+  <div class="ui-preview">
+    <div class="ui-preview-label">Design Direction</div>
+    <p><strong>Vertical Flow</strong> with editorial typography. Single-column layout with generous whitespace. Sections alternate between default and surface backgrounds. Scroll-triggered reveal animations. Hide-on-scroll navigation.</p>
+    <p style="margin-top: 0.5rem;"><strong>Personality:</strong> Bold, sharp, confident. Editorial magazine feel with serif headings and clean sans body text.</p>
+    <p style="margin-top: 0.5rem;"><strong>Fonts:</strong> Instrument Serif (headings) + General Sans (body) + JetBrains Mono (code)</p>
+  </div>
+
+  <h3>Color Palette</h3>
+  <p>Forest green committed strategy. One deep green carries 30-60% of the visual identity.</p>
+
+  <div style="display: flex; gap: 2rem; margin: 1rem 0;">
+    <div>
+      <div class="ui-preview-label">Light Theme</div>
+      <div class="color-swatches">
+        <div>
+          <div class="swatch" style="background: #f5f7f5;"></div>
+          <span class="swatch-label">bg</span>
+        </div>
+        <div>
+          <div class="swatch" style="background: #edf1ed;"></div>
+          <span class="swatch-label">surface</span>
+        </div>
+        <div>
+          <div class="swatch" style="background: #1f2e1f;"></div>
+          <span class="swatch-label">text</span>
+        </div>
+        <div>
+          <div class="swatch" style="background: #2d6a3f;"></div>
+          <span class="swatch-label">accent</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ui-preview-label">Dark Theme</div>
+      <div class="color-swatches">
+        <div>
+          <div class="swatch" style="background: #1a211a;"></div>
+          <span class="swatch-label">bg</span>
+        </div>
+        <div>
+          <div class="swatch" style="background: #252e25;"></div>
+          <span class="swatch-label">surface</span>
+        </div>
+        <div>
+          <div class="swatch" style="background: #e5ebe5;"></div>
+          <span class="swatch-label">text</span>
+        </div>
+        <div>
+          <div class="swatch" style="background: #5fa676;"></div>
+          <span class="swatch-label">accent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size: 0.875rem; color: var(--text-muted);">Full mockup: <code>specs/mockups/site-overview.html</code> (open in browser, toggle pages with bottom-right controls)</p>
+</section>
+
+<section>
+  <h2>Tech Stack</h2>
+  <div class="tech-grid">
+    <div class="tech-item"><strong>Framework</strong> Next.js 14+ (App Router)</div>
+    <div class="tech-item"><strong>Styling</strong> CSS Modules + Custom Properties</div>
+    <div class="tech-item"><strong>Content</strong> Markdown + JSON (in repo)</div>
+    <div class="tech-item"><strong>Fonts</strong> Instrument Serif, General Sans, JetBrains Mono</div>
+    <div class="tech-item"><strong>Contact</strong> Formspree</div>
+    <div class="tech-item"><strong>Deploy</strong> GitHub Pages + Actions</div>
+    <div class="tech-item"><strong>Testing</strong> Vitest + Playwright</div>
+    <div class="tech-item"><strong>Domain</strong> Custom domain (user-owned)</div>
+  </div>
+</section>
+
+<section>
+  <h2>Key Design Decisions</h2>
+  <table class="decisions-table">
+    <thead>
+      <tr><th>Decision</th><th>Why</th><th>What else was considered</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Static export</td>
+        <td>GitHub Pages serves static files. No server means no costs, no cold starts, maximum reliability.</td>
+        <td>Vercel (supports SSR but adds provider dependency)</td>
+      </tr>
+      <tr>
+        <td>Markdown in repo</td>
+        <td>Content is version-controlled with code. Jon edits posts in his IDE, no external CMS.</td>
+        <td>Contentful, Sanity (adds complexity and cost)</td>
+      </tr>
+      <tr>
+        <td>CSS Modules</td>
+        <td>Design tokens from DESIGN.md map to CSS custom properties. Scoped styles, no runtime CSS-in-JS overhead.</td>
+        <td>Tailwind (fights the token system), styled-components (runtime cost)</td>
+      </tr>
+      <tr>
+        <td>Formspree</td>
+        <td>No server needed for contact form. Free tier covers personal site volume.</td>
+        <td>Custom API route (incompatible with static export)</td>
+      </tr>
+      <tr>
+        <td>GitHub API at build</td>
+        <td>Repos update per deploy, not per page load. No rate limiting for visitors.</td>
+        <td>Client-side fetch (rate limiting, loading states)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>Glossary</h2>
+  <dl class="glossary">
+    <dt>Static export</dt>
+    <dd>Generating all pages as plain HTML files at build time, with no server needed to serve them.</dd>
+    <dt>App Router</dt>
+    <dd>Next.js's file-based routing system where each folder in <code>src/app/</code> becomes a URL path.</dd>
+    <dt>Frontmatter</dt>
+    <dd>Metadata at the top of a Markdown file (title, date, tags) used to generate listings and page headers.</dd>
+    <dt>CSS custom properties</dt>
+    <dd>Variables defined in CSS (e.g., <code>--accent</code>) that enable theme switching and consistent design tokens.</dd>
+    <dt>Formspree</dt>
+    <dd>A third-party service that receives form submissions via POST request and forwards them as email.</dd>
+    <dt>GitHub Pages</dt>
+    <dd>Free static site hosting from GitHub, served from a repository's branch or build output.</dd>
+    <dt>GitHub Actions</dt>
+    <dd>Automated workflows that run on GitHub events (e.g., push to main) to build and deploy the site.</dd>
+    <dt>OKLCH</dt>
+    <dd>A color space used in the design system that provides perceptually uniform color manipulation.</dd>
+  </dl>
+</section>
+
+</div>
+
+</body>
+</html>
