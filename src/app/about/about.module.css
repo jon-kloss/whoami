@@ -1,0 +1,45 @@
+.bio p {
+  font-size: 1.1875rem;
+  margin-bottom: var(--space-md);
+  line-height: 1.65;
+}
+
+.subheading {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.elsewhere {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.elsewhere li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.platform {
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.handle {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--duration-fast) ease-out;
+}
+
+.handle:hover {
+  color: var(--accent-hover);
+}

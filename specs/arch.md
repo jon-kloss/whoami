@@ -6,7 +6,7 @@ A statically-generated personal portfolio and blog built with Next.js App Router
 
 ## System Architecture
 
-The system follows a **build-time rendering** model: all data is resolved during `next build`, producing a fully static site with zero server-side runtime. The only client-side dynamic behavior is theme toggling (localStorage), scroll-triggered animations (IntersectionObserver), and contact form submission (Formspree).
+The system follows a **build-time rendering** model: all data is resolved during `next build`, producing a fully static site with zero server-side runtime. The only client-side dynamic behavior is scroll-triggered animations (IntersectionObserver) and contact form submission (Formspree).
 
 ```
 Content Layer          Build Layer              Runtime Layer
@@ -17,8 +17,7 @@ content/resume.json  ──→ JSON parse  ──→ HTML   (static files)
 GitHub API (repos)   ──→ fetch at build ──→ HTML
 
                       next build                Browser
-                      (static export)           ├─ Theme toggle (localStorage)
-                                                ├─ Scroll reveals (IntersectionObserver)
+                      (static export)           ├─ Scroll reveals (IntersectionObserver)
                                                 └─ Contact form → Formspree API
 ```
 
@@ -33,9 +32,8 @@ GitHub API (repos)   ──→ fetch at build ──→ HTML
 
 | Component | Responsibility | Depends On | Spec |
 |-----------|---------------|------------|------|
-| Root Layout | Shell with nav, footer, theme provider | — | site-layout.md |
-| Nav | Fixed header, hide-on-scroll, theme toggle | ThemeProvider | site-layout.md |
-| ThemeProvider | Dark/light state, localStorage, system preference | — | site-layout.md |
+| Root Layout | Shell with nav, footer | — | site-layout.md |
+| Nav | Fixed header, hide-on-scroll | — | site-layout.md |
 | Footer | Copyright, social links | — | site-layout.md |
 | Home Page | Hero, featured projects, latest writing, contact | Blog, Projects, ContactForm | home-page.md |
 | Blog Listing | List published posts, featured post treatment | posts.ts (lib) | blog.md |

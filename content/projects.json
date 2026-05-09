@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Nephs Workshop",
+    "description": "AI-powered creative workshop for kids — interactive games that teach problem-solving through play.",
+    "tags": ["Claude Code", "Phaser.js", "Node.js"],
+    "url": "https://github.com/jon-kloss/nephs",
+    "repo": "https://github.com/jon-kloss/nephs",
+    "featured": true,
+    "order": 1
+  },
+  {
+    "title": "Wire",
+    "description": "HTTP API client built for AI agents. Local-first request collections with test assertions and snapshot testing.",
+    "tags": ["TypeScript", "CLI", "HTTP"],
+    "url": "https://github.com/jon-kloss/wire",
+    "repo": "https://github.com/jon-kloss/wire",
+    "featured": true,
+    "order": 2
+  },
+  {
+    "title": "Portfolio",
+    "description": "This site — a statically exported Next.js portfolio with editorial typography and forest green palette.",
+    "tags": ["Next.js", "CSS", "TypeScript"],
+    "url": "https://github.com/jon-kloss/blog",
+    "repo": "https://github.com/jon-kloss/blog",
+    "featured": false,
+    "order": 3
+  }
+]

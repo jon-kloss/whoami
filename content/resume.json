@@ -1,0 +1,37 @@
+{
+  "experience": [
+    {
+      "title": "Software Engineer",
+      "company": "Anthropic",
+      "startDate": "2024",
+      "endDate": "Present",
+      "description": "Building tools and infrastructure for Claude. Working on developer experience and internal tooling."
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Previous Company",
+      "startDate": "2022",
+      "endDate": "2024",
+      "description": "Full-stack development focused on API design and system architecture."
+    },
+    {
+      "title": "Junior Developer",
+      "company": "First Job",
+      "startDate": "2020",
+      "endDate": "2022",
+      "description": "Built web applications and learned the fundamentals of production software."
+    }
+  ],
+  "skills": [
+    "TypeScript",
+    "React",
+    "Next.js",
+    "Node.js",
+    "Go",
+    "Python",
+    "PostgreSQL",
+    "AWS",
+    "Docker",
+    "Git"
+  ]
+}

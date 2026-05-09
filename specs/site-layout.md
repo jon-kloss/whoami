@@ -1,31 +1,33 @@
-@status(approved)
+@status(verified)
 @depends-on(system)
 @blocks(blog)
 @blocks(projects-showcase)
 @blocks(about-resume)
 @blocks(contact-form)
+@respec(2026-05-09): Removed dark theme/ThemeToggle/ThemeProvider. Changed layout from 68ch-constrained to full-width sections. Light-only. Inspired by visualpoet.in structure.
 
-# Feature: Site Layout and Theming
+# Feature: Site Layout
 
 As a visitor
-I want a consistent, well-crafted layout with dark/light theme support
+I want a consistent, well-crafted layout with spacious full-width sections
 So that I can navigate the site comfortably and the design feels cohesive
 
 ## Technical Context
 
-- **Root layout**: `src/app/layout.tsx` with `<Nav>`, `<Footer>`, and `<ThemeProvider>`
-- **Design tokens**: CSS custom properties defined in `src/styles/globals.css`, switched via `[data-theme="dark"]`
+- **Root layout**: `src/app/layout.tsx` with `<Nav>` and `<Footer>`
+- **Design tokens**: CSS custom properties defined in `src/app/globals.css`, light theme only
 - **Fonts**: Loaded via `next/font` (Google Fonts for Instrument Serif + JetBrains Mono) and external CSS (Fontshare for General Sans)
-- **Theme persistence**: `localStorage` for user preference, `prefers-color-scheme` as default
+- **Layout**: Full-width sections with content constrained inside via page margins `clamp(1.5rem, 5vw, 6rem)` and max-width `1200px`. Prose content (blog posts, about text) capped at `68ch`.
 - **Nav behavior**: Fixed position, hides on scroll down, shows on scroll up, transparent over hero, solid with backdrop blur elsewhere
 
 ## UI Design
 
 - **Register**: brand
-- **Design direction**: Vertical Flow with editorial typography
+- **Design direction**: Full-width sections, generous whitespace, editorial typography
 - **Mockup**: `specs/mockups/site-overview.html`
 - **Typography**: Instrument Serif headings (weight 400, italic for accent words), General Sans body, JetBrains Mono for code/metadata
-- **Color**: Forest green OKLCH committed strategy, tokens from DESIGN.md
+- **Color**: Forest green OKLCH committed strategy, tokens from DESIGN.md. Light theme only.
+- **Layout**: Sections span full viewport width. Alternating `--bg` and `--surface` backgrounds for visual rhythm. Inner content respects page margins and max-width.
 - **Motion**: Scroll reveals (fade + translate 12px), nav slide transition, hover underline animations
 
 ## Background
@@ -41,7 +43,6 @@ So that I can navigate the site comfortably and the design feels cohesive
 - When the page loads
 - Then the navigation shows links to Projects, Blog, About, Resume, Contact
 - And the site name "Jon Kloss" links to the home page
-- And a theme toggle button is visible
 
 ### Scenario: Navigation hides on scroll down
 
@@ -56,27 +57,6 @@ So that I can navigate the site comfortably and the design feels cohesive
 - Then the navigation slides back into view
 - And it has a solid background with backdrop blur
 
-## Rule: Dark and light themes work correctly
-
-### Scenario: Theme follows system preference on first visit
-
-- Given a visitor has never been to the site
-- When they visit any page
-- Then the theme matches their system color scheme preference
-
-### Scenario: Theme toggle switches between dark and light
-
-- Given a visitor clicks the theme toggle
-- Then the page switches to the opposite theme
-- And the preference is saved to localStorage
-- And subsequent visits use the saved preference
-
-### Scenario: No flash of wrong theme on load
-
-- Given a visitor has a saved theme preference
-- When they load any page
-- Then the correct theme is applied before first paint (no flash of unstyled content)
-
 ## Rule: Footer appears on all pages
 
 ### Scenario: Footer renders consistently
@@ -84,6 +64,16 @@ So that I can navigate the site comfortably and the design feels cohesive
 - Given a visitor is on any page
 - When they scroll to the bottom
 - Then the footer shows copyright and links to GitHub, LinkedIn, RSS
+
+## Rule: Layout uses full-width sections
+
+### Scenario: Sections span the full viewport
+
+- Given a visitor is on any page with multiple sections
+- When the page renders
+- Then each section spans the full viewport width
+- And section content is constrained by page margins and max-width
+- And adjacent sections alternate between default and surface backgrounds
 
 ## Rule: Layout is responsive
 

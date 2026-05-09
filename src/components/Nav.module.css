@@ -1,0 +1,72 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: var(--space-md) clamp(1.5rem, 5vw, 6rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  transition: background var(--duration-fast) ease-out,
+              transform var(--duration-med) var(--ease-out);
+}
+
+.scrolled {
+  background: oklch(0.97 0.005 148 / 0.92);
+  background: oklch(from var(--bg) l c h / 0.92);
+  backdrop-filter: blur(8px);
+}
+
+.hidden {
+  transform: translateY(-100%);
+}
+
+.navName {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.navLinks {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: center;
+  list-style: none;
+}
+
+.navLinks a {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  position: relative;
+  transition: color var(--duration-fast) ease-out;
+}
+
+.navLinks a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: width var(--duration-med) var(--ease-out);
+}
+
+.navLinks a:hover {
+  color: var(--accent);
+}
+
+.navLinks a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .navLinks {
+    gap: var(--space-md);
+  }
+}

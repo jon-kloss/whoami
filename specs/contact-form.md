@@ -1,5 +1,6 @@
-@status(approved)
+@status(verified)
 @depends-on(site-layout)
+@respec(2026-05-09): Updated UI Design for full-width section layout. Removed dark theme references.
 
 # Feature: Contact Form
 
@@ -17,7 +18,7 @@ So that I can reach out about projects, collaboration, or opportunities
 
 ## UI Design
 
-- **Layout**: Section label + heading, intro text, then form fields
+- **Layout**: Full-width page. Section label + heading, intro text, then form fields.
 - **Labels**: Visible above each field (not placeholder-only)
 - **Inputs**: Full-width, surface background, border, 2px border-radius. Forest green border on focus.
 - **Submit button**: Primary button style (accent background, bg text)

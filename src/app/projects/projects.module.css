@@ -1,0 +1,108 @@
+.projectList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-2xl);
+}
+
+.projectItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--duration-fast) ease-out;
+}
+
+.projectItem:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.projectItem:hover {
+  background: var(--accent-surface);
+}
+
+.projectInfo {
+  flex: 1;
+}
+
+.projectTitle {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: var(--space-xs);
+}
+
+.projectDesc {
+  color: var(--text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  margin-bottom: var(--space-sm);
+}
+
+.tags {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.arrow {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-left: var(--space-lg);
+  transition: transform var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) ease-out;
+}
+
+.projectItem:hover .arrow {
+  transform: translateX(4px);
+  color: var(--accent);
+}
+
+.openSource {
+  margin-top: var(--space-xl);
+}
+
+.repoList {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-md);
+}
+
+.repoItem {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  align-items: baseline;
+  transition: color var(--duration-fast) ease-out;
+}
+
+.repoItem:hover {
+  color: var(--accent);
+}
+
+.repoName {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.repoDesc {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .arrow {
+    display: none;
+  }
+
+  .projectItem {
+    padding: var(--space-md);
+  }
+}

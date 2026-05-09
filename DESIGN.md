@@ -2,41 +2,26 @@
 
 ## Theme
 
-Editorial confidence with forest green identity. Magazine-quality typography drives the visual hierarchy. The signature green is deep and grounded — not bright emerald, but the dark, earthy green of old-growth trees. It appears in headings, links, interactive elements, and key moments, while tinted neutrals handle everything else. Dark and light themes share the same personality; neither is default.
+Editorial confidence with forest green identity. Clean, spacious layout with full-width sections and generous whitespace. The signature green is deep and grounded — not bright emerald, but the dark, earthy green of old-growth trees. It appears in headings, links, interactive elements, and key moments, while tinted neutrals handle everything else. Light theme only — optimized for one context.
 
-Scene sentence: A developer reviewing portfolio sites at their desk, bright external monitor, switching between dark mode at night and light mode during the day. The site should feel equally intentional in both.
+Scene sentence: A hiring manager opens the site on their laptop during a coffee break. The layout breathes, the typography is confident, and the green accents catch their eye without shouting. They scroll through the whole page in one sitting.
 
 ## Colors
 
 Color strategy: **Committed** — forest green carries 30-60% of visual identity.
 
-All values in OKLCH. Neutrals are tinted toward the brand hue (160°).
-
-### Light theme
+All values in OKLCH. Neutrals are tinted toward the brand hue (160°). Light theme only.
 
 | Role | Token | Value | Usage |
 |------|-------|-------|-------|
 | Background | `--bg` | `oklch(0.97 0.005 148)` | Page background |
-| Surface | `--surface` | `oklch(0.94 0.008 148)` | Cards, code blocks, raised areas |
+| Surface | `--surface` | `oklch(0.94 0.008 148)` | Alternate section backgrounds, code blocks |
 | Border | `--border` | `oklch(0.88 0.01 148)` | Dividers, borders |
 | Text primary | `--text` | `oklch(0.18 0.015 148)` | Body text, headings |
 | Text secondary | `--text-muted` | `oklch(0.40 0.01 148)` | Captions, metadata, dates |
 | Accent | `--accent` | `oklch(0.38 0.12 148)` | Links, interactive elements, brand moments |
 | Accent hover | `--accent-hover` | `oklch(0.32 0.10 148)` | Hover states on accent |
 | Accent surface | `--accent-surface` | `oklch(0.93 0.03 148)` | Light accent backgrounds |
-
-### Dark theme
-
-| Role | Token | Value | Usage |
-|------|-------|-------|-------|
-| Background | `--bg` | `oklch(0.13 0.01 148)` | Page background |
-| Surface | `--surface` | `oklch(0.18 0.015 148)` | Cards, code blocks, raised areas |
-| Border | `--border` | `oklch(0.25 0.02 148)` | Dividers, borders |
-| Text primary | `--text` | `oklch(0.92 0.01 148)` | Body text, headings |
-| Text secondary | `--text-muted` | `oklch(0.65 0.01 148)` | Captions, metadata, dates |
-| Accent | `--accent` | `oklch(0.55 0.13 148)` | Links, interactive elements, brand moments |
-| Accent hover | `--accent-hover` | `oklch(0.62 0.11 148)` | Hover states on accent |
-| Accent surface | `--accent-surface` | `oklch(0.22 0.04 148)` | Muted accent backgrounds |
 
 ## Typography
 
@@ -60,7 +45,17 @@ Choose characterful fonts — not Inter, Roboto, or system-ui defaults.
 - **Body**: A readable humanist sans or transitional serif for long-form blog content. Consider: Source Serif 4, Literata, or General Sans.
 - **Code**: JetBrains Mono or Fira Code — ligatures optional.
 
-Body line length capped at 68ch.
+Body line length capped at 68ch for prose content (blog posts, about text). Sections themselves go full-width.
+
+## Layout
+
+Full-width sections with content constrained inside. Sections alternate between `--bg` and `--surface` backgrounds for visual rhythm. Each section spans the full viewport width; inner content respects page margins.
+
+| Token | Value | Usage |
+|-------|-------|-------|
+| Page margins | `clamp(1.5rem, 5vw, 6rem)` | Generous on wide, tight on mobile |
+| Content max-width | `1200px` | Section content constraint |
+| Prose max-width | `68ch` | Blog body, about text — reading comfort |
 
 ## Spacing
 
@@ -75,8 +70,6 @@ Vary spacing for editorial rhythm. Not a rigid 8px grid everywhere.
 | `--space-xl` | `4rem` | Major section breaks |
 | `--space-2xl` | `8rem` | Page-level breathing room |
 
-Page margins: `clamp(1.5rem, 5vw, 6rem)` — generous on wide screens, tight on mobile.
-
 ## Elevation
 
 Minimal elevation. Editorial layouts are flat. Depth comes from spacing and typography, not shadows.
@@ -84,10 +77,8 @@ Minimal elevation. Editorial layouts are flat. Depth comes from spacing and typo
 | Level | Value | Usage |
 |-------|-------|-------|
 | None | `none` | Default for most elements |
-| Subtle | `0 1px 3px oklch(0 0 0 / 0.06)` | Cards, code blocks (light theme only) |
+| Subtle | `0 1px 3px oklch(0 0 0 / 0.06)` | Cards, code blocks |
 | Interactive | `0 2px 8px oklch(0 0 0 / 0.08)` | Hover states on interactive surfaces |
-
-Dark theme: no shadows. Use border or surface color shifts for distinction.
 
 ## Motion
 
@@ -95,9 +86,9 @@ Smooth and deliberate. Motion supports content hierarchy, not decoration.
 
 | Property | Duration | Easing | Notes |
 |----------|----------|--------|-------|
-| Color / opacity | `150ms` | `ease-out` | Hover states, theme transitions |
+| Color / opacity | `150ms` | `ease-out` | Hover states |
 | Transform (small) | `300ms` | `cubic-bezier(0.16, 1, 0.3, 1)` | Subtle reveals, link underlines |
-| Transform (large) | `500ms` | `cubic-bezier(0.16, 1, 0.3, 1)` | Page transitions, section reveals |
+| Transform (large) | `500ms` | `cubic-bezier(0.16, 1, 0.3, 1)` | Section reveals |
 | Stagger delay | `75ms` | — | Between items in a list or grid |
 
 Scroll-triggered reveals: elements fade in + translate up 16px on intersect. Once only.
@@ -108,9 +99,11 @@ Respect `prefers-reduced-motion`: disable transforms, keep opacity fades at 0ms.
 
 ### Navigation
 
-Top navigation bar, not sidebar. Transparent over hero, solid on scroll. Logo/name left, nav links right, theme toggle at far right.
+Top navigation bar, not sidebar. Transparent over hero, solid on scroll with backdrop blur. Logo/name left, nav links right. No theme toggle.
 
 Links use accent color on hover with a smooth underline animation (not text-decoration — use a pseudo-element or border-bottom transition).
+
+Hide on scroll down, show on scroll up.
 
 ### Blog post cards
 
@@ -122,11 +115,11 @@ Curated projects get more visual treatment than blog posts: title, one-line desc
 
 ### Code blocks
 
-Use `--surface` background with `--border` outline. Syntax highlighting respects the theme. No rounded corners beyond 4px.
+Use `--surface` background with `--border` outline. No rounded corners beyond 4px.
 
 ### Contact form
 
-Clean, minimal form with visible labels (not just placeholders). Two fields visible at a time max. Submit button uses accent color, solid fill.
+Clean, minimal form with visible labels (not just placeholders). Submit button uses accent color, solid fill.
 
 ## Do's
 
@@ -135,12 +128,13 @@ Clean, minimal form with visible labels (not just placeholders). Two fields visi
 - Use generous negative space between sections (space-xl to space-2xl)
 - Vary rhythm — alternate between dense content areas and open breathing room
 - Treat blog post content like a magazine article: readable, well-spaced, typographically rich
+- Use full-width sections with alternating backgrounds for visual variety
 
 ## Don'ts
 
 - Don't use card grids with identical sizing — vary the visual weight
-- Don't add shadows in dark theme — use border or surface shifts
 - Don't use more than two typefaces (heading + body) plus monospace for code
 - Don't animate layout properties (width, height, top, left) — use transform and opacity
 - Don't add decorative elements that don't serve content (no floating shapes, no gradient blobs)
 - Don't use the accent forest green as a large background fill — it's for punctuation, not wallpaper
+- Don't constrain everything to 68ch — sections go full-width, only prose needs the narrow column

@@ -58,7 +58,7 @@ A personal developer portfolio and blog that demonstrates engineering skill thro
 blog/
   src/
     app/
-      layout.tsx          # Root layout with nav, footer, theme provider
+      layout.tsx          # Root layout with nav, footer
       page.tsx            # Home page
       blog/
         page.tsx          # Blog listing
@@ -70,7 +70,6 @@ blog/
     components/
       Nav.tsx             # Navigation with hide-on-scroll
       Footer.tsx          # Site footer
-      ThemeToggle.tsx     # Dark/light toggle
       ProjectCard.tsx     # Project list item
       PostCard.tsx        # Blog post list item
       ContactForm.tsx     # Formspree contact form

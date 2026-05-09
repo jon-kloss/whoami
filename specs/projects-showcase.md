@@ -1,6 +1,7 @@
-@status(approved)
+@status(verified)
 @depends-on(site-layout)
 @blocks(home-page)
+@respec(2026-05-09): Updated UI Design for full-width section layout. Removed dark theme references.
 
 # Feature: Projects Showcase
 
@@ -43,6 +44,7 @@ GitHub repo (from API, relevant fields):
 
 ## UI Design
 
+- **Layout**: Full-width page with generous whitespace.
 - **Curated projects**: Stacked list items with title, description, tech tags, and directional arrow on hover. Hover state uses accent-surface background.
 - **GitHub repos**: Compact list below curated projects under "Open Source" label. Monospace repo name + short description.
 - **Mockup**: `specs/mockups/site-overview.html` (Home page, projects section)

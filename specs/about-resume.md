@@ -1,5 +1,6 @@
-@status(approved)
+@status(verified)
 @depends-on(site-layout)
+@respec(2026-05-09): Updated UI Design for full-width section layout. Removed dark theme references.
 
 # Feature: About and Resume Pages
 
@@ -16,8 +17,8 @@ So that I can decide whether to work with him or hire him
 
 ## UI Design
 
-- **About**: Large page heading in Instrument Serif. Bio text at 1.1875rem, comfortable reading width. "Elsewhere" section as a simple key-value list (platform name left, handle/link right in mono).
-- **Resume**: Page heading with PDF download button. Experience entries with title + date on one line, company in accent, description in muted text. Skills section with tech tags.
+- **About**: Full-width page. Large page heading in Instrument Serif. Bio text at 1.1875rem, comfortable reading width (68ch max). "Elsewhere" section as a simple key-value list (platform name left, handle/link right in mono).
+- **Resume**: Full-width page. Page heading with PDF download button. Experience entries with title + date on one line, company in accent, description in muted text. Skills section with tech tags.
 - **Mockup**: `specs/mockups/site-overview.html` (About and Resume page views)
 
 ## Background

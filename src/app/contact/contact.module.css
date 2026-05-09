@@ -1,0 +1,5 @@
+.intro {
+  color: var(--text-muted);
+  margin-bottom: var(--space-xl);
+  font-size: 1.0625rem;
+}

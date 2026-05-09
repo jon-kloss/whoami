@@ -1,0 +1,183 @@
+/* Design tokens from DESIGN.md — forest green OKLCH palette, light theme only */
+
+:root {
+  /* Colors */
+  --bg: oklch(0.97 0.005 148);
+  --surface: oklch(0.94 0.008 148);
+  --border: oklch(0.88 0.01 148);
+  --text: oklch(0.18 0.015 148);
+  --text-muted: oklch(0.40 0.01 148);
+  --accent: oklch(0.38 0.12 148);
+  --accent-hover: oklch(0.32 0.10 148);
+  --accent-surface: oklch(0.93 0.03 148);
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 6rem;
+
+  /* Layout */
+  --page-margin: clamp(1.5rem, 5vw, 6rem);
+  --content-width: 1200px;
+  --prose-width: 68ch;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-med: 300ms;
+  --duration-slow: 500ms;
+
+  /* Typography */
+  --font-heading: var(--font-instrument-serif), Georgia, serif;
+  --font-body: 'General Sans', -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+}
+
+/* Reset */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Full-width section layout */
+.section {
+  padding: var(--space-xl) var(--page-margin);
+}
+
+.section + .section {
+  border-top: 1px solid var(--border);
+}
+
+.sectionSurface {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.sectionInner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+/* Prose constraint for reading content */
+.prose {
+  max-width: var(--prose-width);
+}
+
+/* Section headings */
+.sectionHeading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 3vw + 0.5rem, 3.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: var(--space-lg);
+}
+
+.sectionHeading em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.sectionLabel {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+/* Buttons */
+.btnPrimary {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: background var(--duration-fast) ease-out;
+}
+
+.btnPrimary:hover {
+  background: var(--accent-hover);
+}
+
+.btnSecondary {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9375rem;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: border-color var(--duration-fast) ease-out, color var(--duration-fast) ease-out;
+}
+
+.btnSecondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Tags */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--accent-surface);
+  padding: 0.125rem 0.5rem;
+  border-radius: 2px;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

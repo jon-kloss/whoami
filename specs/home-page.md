@@ -1,11 +1,12 @@
-@status(approved)
+@status(verified)
 @depends-on(blog)
 @depends-on(projects-showcase)
+@respec(2026-05-09): Storytelling hero rewrite — emotive tagline, less transactional. Full-width sections. Removed theme toggle reference.
 
 # Feature: Home Page
 
 As a visitor
-I want a compelling landing page that showcases Jon's work and writing
+I want a compelling landing page that tells Jon's story and showcases his work
 So that I get an immediate sense of who he is and can navigate to what interests me
 
 ## Technical Context
@@ -15,13 +16,14 @@ So that I get an immediate sense of who he is and can navigate to what interests
 - **Static generation**: All data resolved at build time
 - **Sections**: Hero, Selected Work (projects), Latest Writing (blog), Get in Touch (contact form)
 - **Primary CTA**: "Get in Touch" (contact is the primary user action)
+- **Layout**: Full-width sections with alternating backgrounds. Content constrained inside.
 
 ## UI Design
 
-- **Hero**: Full viewport height. Large Instrument Serif name (clamp 4.5rem-8rem, weight 400). "Software engineer" tagline below. Primary CTA "Get in Touch" + secondary "View Projects". No scroll hint arrow.
-- **Selected Work** (section 01): Curated projects as stacked list items with hover arrows. GitHub repos in compact list below. Default background.
-- **Latest Writing** (section 02): Featured post with accent border at top, remaining posts in list below. Surface background for visual variety.
-- **Get in Touch** (section 03): Contact form (same as /contact page). Default background.
+- **Hero**: Full viewport height. Large Instrument Serif name (clamp 4.5rem-8rem, weight 400). Storytelling tagline below — personal, emotive, not a job title. Something that captures who Jon is and what he cares about. Primary CTA "Get in Touch" + secondary "View Projects". No scroll hint arrow.
+- **Selected Work** (section 01): Full-width section on default background. Curated projects as stacked list items with hover arrows. GitHub repos in compact list below.
+- **Latest Writing** (section 02): Full-width section on surface background for visual contrast. Featured post with accent border at top, remaining posts in list below.
+- **Get in Touch** (section 03): Full-width section on default background. Contact form (same as /contact page).
 - **Section labels**: Numbered (01, 02, 03) in monospace accent color above headings. Heading accent words in italic.
 - **Scroll reveals**: Sections fade in + translate up 12px on intersection.
 - **Mockup**: `specs/mockups/site-overview.html` (Home page view)
@@ -33,11 +35,12 @@ So that I get an immediate sense of who he is and can navigate to what interests
 
 ## Rule: Hero section creates a strong first impression
 
-### Scenario: Hero renders with name and CTA
+### Scenario: Hero renders with name and storytelling tagline
 
 - Given a visitor lands on the home page
 - When the page loads
 - Then "Jon Kloss" displays in large serif typography
+- And a personal tagline tells visitors who he is and what he builds
 - And "Get in Touch" is the primary CTA button
 - And "View Projects" is the secondary CTA
 
@@ -75,7 +78,7 @@ So that I get an immediate sense of who he is and can navigate to what interests
 
 - Given the home page renders
 - When the user scrolls to the writing section
-- Then it has a different background color (surface) from adjacent sections
+- Then it has a surface background spanning full viewport width
 
 ## Rule: Contact section provides a direct path to reach out
 

@@ -1,6 +1,7 @@
-@status(approved)
+@status(verified)
 @depends-on(site-layout)
 @blocks(home-page)
+@respec(2026-05-09): Updated UI Design for full-width section layout. Prose content stays 68ch. Removed dark theme references.
 
 # Feature: Blog
 
@@ -19,8 +20,8 @@ So that I can learn from Jon's writing and find posts that interest me
 
 ## UI Design
 
-- **Blog listing**: Stacked editorial layout. Featured post at top with accent border, larger title, full excerpt. Remaining posts in a clean list with date + title + excerpt.
-- **Blog post**: Single column, 68ch max-width. Lead paragraph in slightly larger text. Headings in Instrument Serif. Code blocks on surface background with border.
+- **Blog listing**: Full-width page. Stacked editorial layout. Featured post at top with accent border, larger title, full excerpt. Remaining posts in a clean list with date + title + excerpt.
+- **Blog post**: Single column, 68ch max-width for prose readability. Lead paragraph in slightly larger text. Headings in Instrument Serif. Code blocks on surface background with border.
 - **Post metadata**: JetBrains Mono, small, muted color. Date and read time.
 - **Mockup**: `specs/mockups/site-overview.html` (Blog Post page view)
 
