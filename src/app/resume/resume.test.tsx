@@ -3,25 +3,26 @@ import { describe, it, expect } from "vitest";
 import ResumePage from "./page";
 
 describe("Resume page", () => {
-  // Scenario: Resume page renders experience entries
-  it("renders experience entries with title, company, and dates", () => {
+  it("renders experience entries with company and roles", () => {
     render(<ResumePage />);
 
-    expect(screen.getByText("Anthropic")).toBeInTheDocument();
-    expect(screen.getByText("Previous Company")).toBeInTheDocument();
-    expect(screen.getByText("First Job")).toBeInTheDocument();
+    expect(screen.getByText("United Wholesale Mortgage")).toBeInTheDocument();
+    expect(screen.getByText("bash.gg")).toBeInTheDocument();
+    expect(screen.getByText("Merkle")).toBeInTheDocument();
+    expect(screen.getByText("HelloWorld, Inc.")).toBeInTheDocument();
+    expect(screen.getByText("Software Developer III")).toBeInTheDocument();
   });
 
   it("renders entries in chronological order (most recent first)", () => {
     render(<ResumePage />);
 
-    const companies = screen.getAllByText(/(Anthropic|Previous Company|First Job)/);
-    expect(companies[0]).toHaveTextContent("Anthropic");
-    expect(companies[1]).toHaveTextContent("Previous Company");
-    expect(companies[2]).toHaveTextContent("First Job");
+    const companies = screen.getAllByText(/(United Wholesale Mortgage|bash\.gg|Merkle|HelloWorld, Inc\.)/);
+    expect(companies[0]).toHaveTextContent("United Wholesale Mortgage");
+    expect(companies[1]).toHaveTextContent("bash.gg");
+    expect(companies[2]).toHaveTextContent("Merkle");
+    expect(companies[3]).toHaveTextContent("HelloWorld, Inc.");
   });
 
-  // Scenario: PDF download is available
   it("provides a PDF download link", () => {
     render(<ResumePage />);
 
@@ -30,22 +31,25 @@ describe("Resume page", () => {
     expect(downloadLink).toHaveAttribute("download");
   });
 
-  // Scenario: Skills section shows tech tags
   it("renders skills as tags", () => {
     render(<ResumePage />);
 
+    expect(screen.getByText("Rust")).toBeInTheDocument();
     expect(screen.getByText("TypeScript")).toBeInTheDocument();
     expect(screen.getByText("React")).toBeInTheDocument();
-    expect(screen.getByText("Go")).toBeInTheDocument();
     expect(screen.getByText("PostgreSQL")).toBeInTheDocument();
   });
 
-  // Scenario: Semantic heading structure
   it("renders heading hierarchy", () => {
     render(<ResumePage />);
 
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: /experience/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: /skills/i })).toBeInTheDocument();
+  });
+
+  it("renders education section", () => {
+    render(<ResumePage />);
+
+    expect(screen.getByText("Wayne State University")).toBeInTheDocument();
   });
 });

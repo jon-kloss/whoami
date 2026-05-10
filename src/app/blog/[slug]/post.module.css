@@ -55,7 +55,7 @@
 }
 
 .content pre {
-  background: var(--surface);
+  background: var(--shiki-light-bg, var(--surface));
   border: 1px solid var(--border);
   border-radius: 2px;
   padding: var(--space-md);
@@ -64,6 +64,18 @@
   font-family: var(--font-mono);
   font-size: 0.875rem;
   line-height: 1.6;
+}
+
+:global([data-theme="dark"]) .content pre {
+  background: var(--shiki-dark-bg, var(--surface));
+}
+
+.content pre span {
+  color: var(--shiki-light);
+}
+
+:global([data-theme="dark"]) .content pre span {
+  color: var(--shiki-dark);
 }
 
 .content code {

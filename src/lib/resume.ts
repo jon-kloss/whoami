@@ -1,16 +1,29 @@
 import fs from "fs";
 import path from "path";
 
-export interface ExperienceEntry {
+export interface Role {
   title: string;
-  company: string;
   startDate: string;
   endDate: string;
-  description: string;
+}
+
+export interface ExperienceEntry {
+  company: string;
+  type: string;
+  startDate: string;
+  endDate: string;
+  roles: Role[];
+}
+
+export interface EducationEntry {
+  institution: string;
+  startDate: string;
+  endDate: string;
 }
 
 export interface ResumeData {
   experience: ExperienceEntry[];
+  education: EducationEntry[];
   skills: string[];
 }
 

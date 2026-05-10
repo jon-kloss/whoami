@@ -1,5 +1,6 @@
 import { getResumeData } from "@/lib/resume";
 import type { Metadata } from "next";
+import { ScrollReveal, StaggerItem } from "@/components/ScrollReveal";
 import styles from "./resume.module.css";
 
 export const metadata: Metadata = {
@@ -8,12 +9,12 @@ export const metadata: Metadata = {
 };
 
 export default function ResumePage() {
-  const { experience, skills } = getResumeData();
+  const { experience, education, skills } = getResumeData();
 
   return (
     <div className="section">
       <div className="sectionInner">
-        <div className="prose">
+        <ScrollReveal animation="fade-up">
           <div className={styles.header}>
             <div>
               <span className="sectionLabel">Resume</span>
@@ -25,32 +26,71 @@ export default function ResumePage() {
               Download PDF
             </a>
           </div>
+        </ScrollReveal>
 
-          <h2 className={styles.subheading}>Experience</h2>
-          <div className={styles.entries}>
-            {experience.map((entry) => (
-              <div key={`${entry.company}-${entry.startDate}`} className={styles.entry}>
-                <div className={styles.entryHeader}>
-                  <span className={styles.entryTitle}>{entry.title}</span>
-                  <span className={styles.entryDates}>
+        <div className={styles.timeline}>
+          {experience.map((entry, i) => (
+            <ScrollReveal
+              key={entry.company}
+              animation={i % 2 === 0 ? "fade-right" : "fade-left"}
+              delay={i * 80}
+            >
+              <div className={styles.timelineItem}>
+                <div className={styles.timelineDot} />
+                <div className={styles.timelineCard}>
+                  <span className={styles.timelineDates}>
                     {entry.startDate} &ndash; {entry.endDate}
                   </span>
+                  <h3 className={styles.timelineCompany}>{entry.company}</h3>
+                  <span className={styles.timelineType}>{entry.type}</span>
+                  <div className={styles.roles}>
+                    {entry.roles.map((role) => (
+                      <div key={`${role.title}-${role.startDate}`} className={styles.role}>
+                        <span className={styles.roleTitle}>{role.title}</span>
+                        <span className={styles.roleDates}>
+                          {role.startDate} &ndash; {role.endDate}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <span className={styles.entryCompany}>{entry.company}</span>
-                <p className={styles.entryDesc}>{entry.description}</p>
               </div>
-            ))}
-          </div>
+            </ScrollReveal>
+          ))}
+        </div>
 
+        {education.length > 0 && (
+          <>
+            <ScrollReveal animation="fade-up">
+              <h2 className={styles.subheading}>Education</h2>
+            </ScrollReveal>
+            {education.map((edu) => (
+              <ScrollReveal key={edu.institution} animation="fade-up" delay={100}>
+                <div className={styles.educationEntry}>
+                  <h3 className={styles.educationName}>{edu.institution}</h3>
+                  <span className={styles.educationDates}>
+                    {edu.startDate} &ndash; {edu.endDate}
+                  </span>
+                </div>
+              </ScrollReveal>
+            ))}
+          </>
+        )}
+
+        <ScrollReveal animation="fade-up">
           <h2 className={styles.subheading}>Skills</h2>
+        </ScrollReveal>
+        <ScrollReveal animation="fade-up" stagger>
           <div className={styles.skills}>
             {skills.map((skill) => (
-              <span key={skill} className="tag">
-                {skill}
-              </span>
+              <StaggerItem key={skill}>
+                <span className="tag">
+                  {skill}
+                </span>
+              </StaggerItem>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </div>
   );

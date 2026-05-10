@@ -37,7 +37,7 @@ export async function getGitHubRepos(): Promise<GitHubRepo[]> {
 
     const repos: GitHubRepo[] = await res.json();
     return repos
-      .filter((r) => !r.name.startsWith("."))
+      .filter((r) => !r.name.startsWith(".") && r.name !== "blog")
       .sort((a, b) => b.stargazers_count - a.stargazers_count);
   } catch {
     return [];

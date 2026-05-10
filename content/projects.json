@@ -1,29 +1,56 @@
 [
   {
-    "title": "Nephs Workshop",
-    "description": "AI-powered creative workshop for kids — interactive games that teach problem-solving through play.",
-    "tags": ["Claude Code", "Phaser.js", "Node.js"],
-    "url": "https://github.com/jon-kloss/nephs",
-    "repo": "https://github.com/jon-kloss/nephs",
+    "title": "Claude Workflow",
+    "description": "Custom Claude Code skills and hooks that turn Claude into a full development workflow — from design specs to verified builds.",
+    "tags": ["Claude Code", "AI Agents", "Developer Tools"],
+    "url": "https://github.com/jon-kloss/claude-workflow",
+    "repo": "https://github.com/jon-kloss/claude-workflow",
     "featured": true,
     "order": 1
   },
   {
-    "title": "Wire",
-    "description": "HTTP API client built for AI agents. Local-first request collections with test assertions and snapshot testing.",
-    "tags": ["TypeScript", "CLI", "HTTP"],
-    "url": "https://github.com/jon-kloss/wire",
-    "repo": "https://github.com/jon-kloss/wire",
+    "title": "Anvil",
+    "description": "Multi-model AI coding agent in Rust with parallel worktrees, semantic caching, and a six-stage correctness pipeline.",
+    "tags": ["Rust", "AI Agents", "ONNX"],
+    "url": "https://github.com/jon-kloss/anvil",
+    "repo": "https://github.com/jon-kloss/anvil",
     "featured": true,
     "order": 2
   },
   {
-    "title": "Portfolio",
-    "description": "This site — a statically exported Next.js portfolio with editorial typography and forest green palette.",
-    "tags": ["Next.js", "CSS", "TypeScript"],
-    "url": "https://github.com/jon-kloss/blog",
-    "repo": "https://github.com/jon-kloss/blog",
-    "featured": false,
+    "title": "Wire",
+    "description": "HTTP API client built for AI agents. Local-first request collections with test assertions, snapshot testing, and contract drift detection.",
+    "tags": ["Rust", "CLI", "HTTP"],
+    "url": "https://github.com/jon-kloss/wire",
+    "repo": "https://github.com/jon-kloss/wire",
+    "featured": true,
     "order": 3
+  },
+  {
+    "title": "Checkmate Chaos",
+    "description": "Roguelike deckbuilder crossed with chess — 21 piece types, exotic abilities, boss encounters, and an AI opponent with behavior trees.",
+    "tags": ["Godot", "GDScript", "Game Dev"],
+    "url": "https://github.com/jon-kloss/checkmate-chaos",
+    "repo": "https://github.com/jon-kloss/checkmate-chaos",
+    "featured": true,
+    "order": 4
+  },
+  {
+    "title": "Nephs Workshop",
+    "description": "AI-powered creative studio where kids build games, write stories, and design characters — all powered by Claude with kid-safe guardrails.",
+    "tags": ["Claude Code", "Phaser.js", "Education"],
+    "url": "https://github.com/jon-kloss/nephs",
+    "repo": "https://github.com/jon-kloss/nephs",
+    "featured": true,
+    "order": 5
+  },
+  {
+    "title": "Agent Test",
+    "description": "Testing framework for AI agents. Record, replay, assert, and detect regressions in agent behavior.",
+    "tags": ["TypeScript", "AI Agents", "Testing"],
+    "url": "https://github.com/jon-kloss/agent-test",
+    "repo": "https://github.com/jon-kloss/agent-test",
+    "featured": true,
+    "order": 6
   }
 ]

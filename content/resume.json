@@ -1,36 +1,88 @@
 {
   "experience": [
     {
-      "title": "Software Engineer",
-      "company": "Anthropic",
-      "startDate": "2024",
+      "company": "United Wholesale Mortgage",
+      "type": "Full-time",
+      "startDate": "Aug 2023",
       "endDate": "Present",
-      "description": "Building tools and infrastructure for Claude. Working on developer experience and internal tooling."
+      "roles": [
+        {
+          "title": "Software Developer III",
+          "startDate": "Jul 2025",
+          "endDate": "Present"
+        },
+        {
+          "title": "Software Developer II",
+          "startDate": "Aug 2023",
+          "endDate": "Jul 2025"
+        }
+      ]
     },
     {
-      "title": "Software Engineer",
-      "company": "Previous Company",
-      "startDate": "2022",
-      "endDate": "2024",
-      "description": "Full-stack development focused on API design and system architecture."
+      "company": "bash.gg",
+      "type": "Full-time",
+      "startDate": "Jun 2022",
+      "endDate": "Jun 2023",
+      "roles": [
+        {
+          "title": "Software Engineer II",
+          "startDate": "Jun 2022",
+          "endDate": "Jun 2023"
+        }
+      ]
     },
     {
-      "title": "Junior Developer",
-      "company": "First Job",
-      "startDate": "2020",
-      "endDate": "2022",
-      "description": "Built web applications and learned the fundamentals of production software."
+      "company": "Merkle",
+      "type": "Full-time",
+      "startDate": "May 2020",
+      "endDate": "Jun 2022",
+      "roles": [
+        {
+          "title": "Software Engineer",
+          "startDate": "May 2020",
+          "endDate": "Jun 2022"
+        }
+      ]
+    },
+    {
+      "company": "HelloWorld, Inc.",
+      "type": "Full-time",
+      "startDate": "Sep 2017",
+      "endDate": "May 2020",
+      "roles": [
+        {
+          "title": "Associate Software Engineer",
+          "startDate": "Sep 2017",
+          "endDate": "May 2020"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Wayne State University",
+      "startDate": "2012",
+      "endDate": "2017"
     }
   ],
   "skills": [
+    "Rust",
     "TypeScript",
+    "C#",
+    "Python",
+    "GDScript",
+    "C",
     "React",
     "Next.js",
+    "React Native",
+    "Tauri",
     "Node.js",
-    "Go",
-    "Python",
+    ".NET",
     "PostgreSQL",
-    "AWS",
+    "Redis",
+    "Unity",
+    "Godot",
+    "Claude Code",
     "Docker",
     "Git"
   ]

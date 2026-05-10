@@ -69,7 +69,9 @@ export async function getPost(slug: string): Promise<Post> {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkRehype)
-    .use(rehypePrettyCode, { theme: "github-light" })
+    .use(rehypePrettyCode, {
+      theme: { dark: "github-dark", light: "github-light" },
+    })
     .use(rehypeStringify)
     .process(content);
   const contentHtml = processedContent.toString();

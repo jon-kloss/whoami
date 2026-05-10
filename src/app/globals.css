@@ -1,7 +1,7 @@
-/* Design tokens from DESIGN.md — forest green OKLCH palette, light theme only */
+/* Design tokens from DESIGN.md — forest green OKLCH palette */
 
 :root {
-  /* Colors */
+  /* Colors — Light */
   --bg: oklch(0.97 0.005 148);
   --surface: oklch(0.94 0.008 148);
   --border: oklch(0.88 0.01 148);
@@ -10,6 +10,17 @@
   --accent: oklch(0.38 0.12 148);
   --accent-hover: oklch(0.32 0.10 148);
   --accent-surface: oklch(0.93 0.03 148);
+}
+
+[data-theme="dark"] {
+  --bg: oklch(0.16 0.01 148);
+  --surface: oklch(0.20 0.012 148);
+  --border: oklch(0.28 0.015 148);
+  --text: oklch(0.92 0.005 148);
+  --text-muted: oklch(0.65 0.01 148);
+  --accent: oklch(0.65 0.15 148);
+  --accent-hover: oklch(0.72 0.13 148);
+  --accent-surface: oklch(0.22 0.03 148);
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -162,20 +173,52 @@ a {
   border-radius: 2px;
 }
 
-/* Scroll reveal */
+/* Scroll reveal animations */
 .reveal {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+}
+
+.reveal--fade-up {
+  transform: translateY(30px);
+}
+
+.reveal--fade-left {
+  transform: translateX(40px);
+}
+
+.reveal--fade-right {
+  transform: translateX(-40px);
+}
+
+.reveal--fade-in {
+  transform: none;
+}
+
+.reveal--scale-in {
+  transform: scale(0.95);
 }
 
 .reveal.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+/* Stagger children */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+
+.stagger-item.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .stagger-item {
     opacity: 1;
     transform: none;
     transition: none;

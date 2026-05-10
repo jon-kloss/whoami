@@ -7,8 +7,8 @@ describe("About page", () => {
   it("renders bio paragraphs", () => {
     render(<AboutPage />);
 
-    expect(screen.getByText(/software engineer who believes/i)).toBeInTheDocument();
-    expect(screen.getByText(/developer experience and system design/i)).toBeInTheDocument();
+    expect(screen.getByText(/Hey, I.m Jon/i)).toBeInTheDocument();
+    expect(screen.getByText(/AI tooling/i)).toBeInTheDocument();
   });
 
   it("shows Elsewhere links to GitHub, LinkedIn, and email", () => {
@@ -16,7 +16,7 @@ describe("About page", () => {
 
     const links = screen.getAllByRole("link");
     const github = links.find((l) => l.getAttribute("href") === "https://github.com/jon-kloss");
-    const linkedin = links.find((l) => l.getAttribute("href") === "https://linkedin.com/in/jon-kloss");
+    const linkedin = links.find((l) => l.getAttribute("href") === "https://www.linkedin.com/in/jonkloss/");
     const email = links.find((l) => l.getAttribute("href") === "mailto:jon.kloss89@gmail.com");
 
     expect(github).toBeDefined();
@@ -30,7 +30,7 @@ describe("About page", () => {
 
     const links = screen.getAllByRole("link");
     const github = links.find((l) => l.getAttribute("href") === "https://github.com/jon-kloss");
-    const linkedin = links.find((l) => l.getAttribute("href") === "https://linkedin.com/in/jon-kloss");
+    const linkedin = links.find((l) => l.getAttribute("href") === "https://www.linkedin.com/in/jonkloss/");
 
     expect(github).toHaveAttribute("target", "_blank");
     expect(github).toHaveAttribute("rel", "noopener noreferrer");
@@ -43,6 +43,14 @@ describe("About page", () => {
     render(<AboutPage />);
 
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 2, name: /what i work with/i })).toBeInTheDocument();
     expect(screen.getByRole("heading", { level: 2, name: /elsewhere/i })).toBeInTheDocument();
+  });
+
+  it("shows technology categories", () => {
+    render(<AboutPage />);
+
+    expect(screen.getByText(/Rust, TypeScript, C#/)).toBeInTheDocument();
+    expect(screen.getByText(/React, Next.js/)).toBeInTheDocument();
   });
 });

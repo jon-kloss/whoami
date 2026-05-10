@@ -19,6 +19,7 @@ vi.mock("@/lib/projects", () => ({
 
 vi.mock("@/components/ScrollReveal", () => ({
   ScrollReveal: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  StaggerItem: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }));
 
 vi.mock("@/components/ContactForm", () => ({
@@ -36,7 +37,7 @@ describe("Home page", () => {
     render(page);
 
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Jon Kloss");
-    expect(screen.getByText(/build tools that disappear/i)).toBeInTheDocument();
+    expect(screen.getByText(/AI tooling, agents, and workflows/i)).toBeInTheDocument();
   });
 
   it("renders primary and secondary CTAs", async () => {

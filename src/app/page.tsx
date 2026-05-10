@@ -1,7 +1,7 @@
 import { getAllPosts } from "@/lib/posts";
 import { getCuratedProjects, getGitHubRepos } from "@/lib/projects";
 import { formatDate } from "@/lib/format";
-import { ScrollReveal } from "@/components/ScrollReveal";
+import { ScrollReveal, StaggerItem } from "@/components/ScrollReveal";
 import { ContactForm } from "@/components/ContactForm";
 import styles from "./home.module.css";
 
@@ -18,8 +18,8 @@ export default async function Home() {
       <section className={styles.hero}>
         <h1 className={styles.heroName}>Jon Kloss</h1>
         <p className={styles.heroTagline}>
-          I build tools that disappear into the workflow. Software engineer
-          exploring the craft of making things that just work.
+          Software engineer building AI tooling, agents, and workflows
+          &mdash; plus indie games and developer tools along the way.
         </p>
         <div className={styles.heroCtas}>
           <a href="/contact" className="btnPrimary">
@@ -32,40 +32,45 @@ export default async function Home() {
       </section>
 
       {/* Selected Work */}
-      <ScrollReveal>
+      <ScrollReveal animation="fade-up">
         <section className="section">
           <div className="sectionInner">
-            <span className="sectionLabel">01</span>
-            <h2 className="sectionHeading">
-              Selected <em>Work</em>
-            </h2>
+            <ScrollReveal animation="fade-right">
+              <span className="sectionLabel">01</span>
+              <h2 className="sectionHeading">
+                Selected <em>Work</em>
+              </h2>
+            </ScrollReveal>
 
-            <div className={styles.projectList}>
-              {projects.map((project) => (
-                <a
-                  key={project.title}
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.projectItem}
-                >
-                  <div className={styles.projectInfo}>
-                    <h3 className={styles.projectTitle}>{project.title}</h3>
-                    <p className={styles.projectDesc}>{project.description}</p>
-                    <div className={styles.tags}>
-                      {project.tags.map((tag) => (
-                        <span key={tag} className="tag">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                  <span className={styles.arrow} aria-hidden="true">
-                    &rarr;
-                  </span>
-                </a>
-              ))}
-            </div>
+            <ScrollReveal animation="fade-up" stagger>
+              <div className={styles.projectList}>
+                {projects.map((project) => (
+                  <StaggerItem key={project.title}>
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.projectItem}
+                    >
+                      <div className={styles.projectInfo}>
+                        <h3 className={styles.projectTitle}>{project.title}</h3>
+                        <p className={styles.projectDesc}>{project.description}</p>
+                        <div className={styles.tags}>
+                          {project.tags.map((tag) => (
+                            <span key={tag} className="tag">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <span className={styles.arrow} aria-hidden="true">
+                        &rarr;
+                      </span>
+                    </a>
+                  </StaggerItem>
+                ))}
+              </div>
+            </ScrollReveal>
 
             {repos.length > 0 && (
               <div>
@@ -100,57 +105,71 @@ export default async function Home() {
       </ScrollReveal>
 
       {/* Latest Writing */}
-      <ScrollReveal>
+      <ScrollReveal animation="fade-up">
         <section className="section sectionSurface">
           <div className="sectionInner">
-            <span className="sectionLabel">02</span>
-            <h2 className="sectionHeading">
-              Latest <em>Writing</em>
-            </h2>
+            <ScrollReveal animation="fade-left">
+              <span className="sectionLabel">02</span>
+              <h2 className="sectionHeading">
+                Latest <em>Writing</em>
+              </h2>
+            </ScrollReveal>
 
             {featured && (
-              <article className={styles.featured}>
-                <a href={`/blog/${featured.slug}`}>
-                  <time className={styles.date}>
-                    {formatDate(featured.date)}
-                  </time>
-                  <h3 className={styles.featuredTitle}>{featured.title}</h3>
-                  <p className={styles.excerpt}>{featured.excerpt}</p>
-                </a>
-              </article>
-            )}
-
-            <div className={styles.postList}>
-              {recentPosts.map((post) => (
-                <article key={post.slug} className={styles.postItem}>
-                  <a href={`/blog/${post.slug}`}>
+              <ScrollReveal animation="fade-up" delay={100}>
+                <article className={styles.featured}>
+                  <a href={`/blog/${featured.slug}`}>
                     <time className={styles.date}>
-                      {formatDate(post.date)}
+                      {formatDate(featured.date)}
                     </time>
-                    <h3 className={styles.postTitle}>{post.title}</h3>
-                    <p className={styles.excerpt}>{post.excerpt}</p>
+                    <h3 className={styles.featuredTitle}>{featured.title}</h3>
+                    <p className={styles.excerpt}>{featured.excerpt}</p>
                   </a>
                 </article>
-              ))}
-            </div>
+              </ScrollReveal>
+            )}
+
+            <ScrollReveal animation="fade-up" stagger>
+              <div className={styles.postList}>
+                {recentPosts.map((post) => (
+                  <StaggerItem key={post.slug}>
+                    <article className={styles.postItem}>
+                      <a href={`/blog/${post.slug}`}>
+                        <time className={styles.date}>
+                          {formatDate(post.date)}
+                        </time>
+                        <h3 className={styles.postTitle}>{post.title}</h3>
+                        <p className={styles.excerpt}>{post.excerpt}</p>
+                      </a>
+                    </article>
+                  </StaggerItem>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       </ScrollReveal>
 
       {/* Contact */}
-      <ScrollReveal>
+      <ScrollReveal animation="scale-in">
         <section className="section">
           <div className="sectionInner">
-            <div className="prose">
-              <span className="sectionLabel">03</span>
-              <h2 className="sectionHeading">
-                Get in <em>Touch</em>
-              </h2>
-              <p className={styles.contactIntro}>
-                Have a project in mind or just want to say hello? I&rsquo;d love
-                to hear from you.
-              </p>
-              <ContactForm />
+            <div className={styles.contactWrapper}>
+              <ScrollReveal animation="fade-up">
+                <span className="sectionLabel">03</span>
+                <h2 className="sectionHeading">
+                  Get in <em>Touch</em>
+                </h2>
+                <p className={styles.contactIntro}>
+                  Have a project in mind or just want to say hello? I&rsquo;d love
+                  to hear from you.
+                </p>
+              </ScrollReveal>
+              <ScrollReveal animation="fade-up" delay={150}>
+                <div className={styles.contactFormWrapper}>
+                  <ContactForm />
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </section>

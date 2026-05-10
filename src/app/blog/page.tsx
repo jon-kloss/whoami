@@ -1,6 +1,8 @@
 import { getAllPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/format";
 import type { Metadata } from "next";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { PostList } from "./PostList";
 import styles from "./blog.module.css";
 
 export const metadata: Metadata = {
@@ -16,32 +18,28 @@ export default function BlogPage() {
   return (
     <div className="section">
       <div className="sectionInner">
-        <span className="sectionLabel">Blog</span>
-        <h1 className="sectionHeading">
-          Writing &amp; <em>Thinking</em>
-        </h1>
+        <ScrollReveal animation="fade-up">
+          <span className="sectionLabel">Blog</span>
+          <h1 className="sectionHeading">
+            Writing &amp; <em>Thinking</em>
+          </h1>
+        </ScrollReveal>
 
         {featured && (
-          <article className={styles.featured}>
-            <a href={`/blog/${featured.slug}`}>
-              <time className={styles.date}>{formatDate(featured.date)}</time>
-              <h2 className={styles.featuredTitle}>{featured.title}</h2>
-              <p className={styles.excerpt}>{featured.excerpt}</p>
-            </a>
-          </article>
-        )}
-
-        <div className={styles.postList}>
-          {remaining.map((post) => (
-            <article key={post.slug} className={styles.postItem}>
-              <a href={`/blog/${post.slug}`} className={styles.postLink}>
-                <time className={styles.date}>{formatDate(post.date)}</time>
-                <h2 className={styles.postTitle}>{post.title}</h2>
-                <p className={styles.excerpt}>{post.excerpt}</p>
+          <ScrollReveal animation="fade-right">
+            <article className={styles.featured}>
+              <a href={`/blog/${featured.slug}`}>
+                <time className={styles.date}>{formatDate(featured.date)}</time>
+                <h2 className={styles.featuredTitle}>{featured.title}</h2>
+                <p className={styles.excerpt}>{featured.excerpt}</p>
               </a>
             </article>
-          ))}
-        </div>
+          </ScrollReveal>
+        )}
+
+        <ScrollReveal animation="fade-up" delay={100}>
+          <PostList posts={remaining.map(({ slug, title, date, excerpt }) => ({ slug, title, date, excerpt }))} />
+        </ScrollReveal>
       </div>
     </div>
   );

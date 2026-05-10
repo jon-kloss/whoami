@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Nav.module.css";
 
 export function Nav() {
@@ -36,7 +37,7 @@ export function Nav() {
   return (
     <nav className={className}>
       <Link href="/" className={styles.navName}>
-        Jon Kloss
+        {"{/}"}
       </Link>
       <ul className={styles.navLinks}>
         <li>
@@ -53,6 +54,9 @@ export function Nav() {
         </li>
         <li>
           <Link href="/contact">Contact</Link>
+        </li>
+        <li>
+          <ThemeToggle />
         </li>
       </ul>
     </nav>

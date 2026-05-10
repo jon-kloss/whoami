@@ -14,18 +14,17 @@ describe("Nav", () => {
     expect(screen.getByRole("link", { name: /contact/i })).toHaveAttribute("href", "/contact");
   });
 
-  it("shows site name 'Jon Kloss' linking to home page", () => {
+  it("shows site logo '{/}' linking to home page", () => {
     render(<Nav />);
 
-    const nameLink = screen.getByRole("link", { name: /jon kloss/i });
+    const nameLink = screen.getByRole("link", { name: /\{\/\}/ });
     expect(nameLink).toHaveAttribute("href", "/");
   });
 
-  // Regression: ThemeToggle removed in respec 2026-05-09
-  it("does not render a theme toggle button", () => {
+  it("renders a theme toggle button", () => {
     render(<Nav />);
 
-    expect(screen.queryByRole("button", { name: /toggle theme/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /toggle theme/i })).toBeInTheDocument();
   });
 
   // Scenario: Navigation hides on scroll down

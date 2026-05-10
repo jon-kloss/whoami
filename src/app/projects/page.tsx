@@ -1,5 +1,6 @@
 import { getCuratedProjects, getGitHubRepos } from "@/lib/projects";
 import type { Metadata } from "next";
+import { ScrollReveal, StaggerItem } from "@/components/ScrollReveal";
 import styles from "./projects.module.css";
 
 export const metadata: Metadata = {
@@ -14,58 +15,65 @@ export default async function ProjectsPage() {
   return (
     <div className="section">
       <div className="sectionInner">
-        <span className="sectionLabel">Projects</span>
-        <h1 className="sectionHeading">
-          Things I&rsquo;ve <em>Built</em>
-        </h1>
+        <ScrollReveal animation="fade-up">
+          <span className="sectionLabel">Projects</span>
+          <h1 className="sectionHeading">
+            Things I&rsquo;ve <em>Built</em>
+          </h1>
+        </ScrollReveal>
 
-        <div className={styles.projectList}>
-          {projects.map((project) => (
-            <a
-              key={project.title}
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.projectItem}
-            >
-              <div className={styles.projectInfo}>
-                <h2 className={styles.projectTitle}>{project.title}</h2>
-                <p className={styles.projectDesc}>{project.description}</p>
-                <div className={styles.tags}>
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <span className={styles.arrow} aria-hidden="true">
-                &rarr;
-              </span>
-            </a>
-          ))}
-        </div>
-
-        {repos.length > 0 && (
-          <div className={styles.openSource}>
-            <span className="sectionLabel">Open Source</span>
-            <div className={styles.repoList}>
-              {repos.map((repo) => (
+        <ScrollReveal animation="fade-up" stagger>
+          <div className={styles.projectList}>
+            {projects.map((project) => (
+              <StaggerItem key={project.title}>
                 <a
-                  key={repo.full_name}
-                  href={repo.html_url}
+                  href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={styles.repoItem}
+                  className={styles.projectItem}
                 >
-                  <span className={styles.repoName}>{repo.name}</span>
-                  {repo.description && (
-                    <span className={styles.repoDesc}>{repo.description}</span>
-                  )}
+                  <div className={styles.projectInfo}>
+                    <h2 className={styles.projectTitle}>{project.title}</h2>
+                    <p className={styles.projectDesc}>{project.description}</p>
+                    <div className={styles.tags}>
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <span className={styles.arrow} aria-hidden="true">
+                    &rarr;
+                  </span>
                 </a>
-              ))}
-            </div>
+              </StaggerItem>
+            ))}
           </div>
+        </ScrollReveal>
+
+        {repos.length > 0 && (
+          <ScrollReveal animation="fade-up" delay={200}>
+            <div className={styles.openSource}>
+              <span className="sectionLabel">Open Source</span>
+              <div className={styles.repoList}>
+                {repos.map((repo) => (
+                  <a
+                    key={repo.full_name}
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.repoItem}
+                  >
+                    <span className={styles.repoName}>{repo.name}</span>
+                    {repo.description && (
+                      <span className={styles.repoDesc}>{repo.description}</span>
+                    )}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
         )}
       </div>
     </div>
