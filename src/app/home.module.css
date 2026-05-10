@@ -7,7 +7,7 @@
   text-align: center;
   padding: var(--space-2xl) var(--page-margin);
   position: relative;
-  background: url('/blog/images/hero-code.jpg') center / cover no-repeat;
+  background: url('/whoami/images/hero-code.jpg') center / cover no-repeat;
 }
 
 .hero::before {

@@ -22,7 +22,7 @@ export default function ResumePage() {
                 Experience &amp; <em>Skills</em>
               </h1>
             </div>
-            <a href="/blog/resume.pdf" download className="btnSecondary">
+            <a href="/whoami/resume.pdf" download className="btnSecondary">
               Download PDF
             </a>
           </div>
