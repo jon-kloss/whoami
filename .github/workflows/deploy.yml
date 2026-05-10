@@ -26,6 +26,8 @@ jobs:
 
       - run: npm ci
       - run: npx next build
+        env:
+          NEXT_PUBLIC_FORMSPREE_ID: mykobvkg
 
       - uses: actions/upload-pages-artifact@v3
         with:
