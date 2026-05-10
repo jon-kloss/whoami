@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { formatDate } from "@/lib/format";
+import Link from "next/link";
 import styles from "./blog.module.css";
 
 interface Post {
@@ -22,11 +23,11 @@ export function PostList({ posts }: { posts: Post[] }) {
       <div className={styles.postList}>
         {posts.slice(0, visible).map((post) => (
           <article key={post.slug} className={styles.postItem}>
-            <a href={`/blog/${post.slug}`} className={styles.postLink}>
+            <Link href={`/blog/${post.slug}`} className={styles.postLink}>
               <time className={styles.date}>{formatDate(post.date)}</time>
               <h2 className={styles.postTitle}>{post.title}</h2>
               <p className={styles.excerpt}>{post.excerpt}</p>
-            </a>
+            </Link>
           </article>
         ))}
       </div>

@@ -3,6 +3,7 @@ import { formatDate } from "@/lib/format";
 import type { Metadata } from "next";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { PostList } from "./PostList";
+import Link from "next/link";
 import styles from "./blog.module.css";
 
 export const metadata: Metadata = {
@@ -28,11 +29,11 @@ export default function BlogPage() {
         {featured && (
           <ScrollReveal animation="fade-right">
             <article className={styles.featured}>
-              <a href={`/blog/${featured.slug}`}>
+              <Link href={`/blog/${featured.slug}`}>
                 <time className={styles.date}>{formatDate(featured.date)}</time>
                 <h2 className={styles.featuredTitle}>{featured.title}</h2>
                 <p className={styles.excerpt}>{featured.excerpt}</p>
-              </a>
+              </Link>
             </article>
           </ScrollReveal>
         )}

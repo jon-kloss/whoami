@@ -27,7 +27,7 @@ describe("Resume page", () => {
     render(<ResumePage />);
 
     const downloadLink = screen.getByRole("link", { name: /download pdf/i });
-    expect(downloadLink).toHaveAttribute("href", "/resume.pdf");
+    expect(downloadLink).toHaveAttribute("href", "/whoami/resume.pdf");
     expect(downloadLink).toHaveAttribute("download");
   });
 

@@ -3,6 +3,7 @@ import { getCuratedProjects, getGitHubRepos } from "@/lib/projects";
 import { formatDate } from "@/lib/format";
 import { ScrollReveal, StaggerItem } from "@/components/ScrollReveal";
 import { ContactForm } from "@/components/ContactForm";
+import Link from "next/link";
 import styles from "./home.module.css";
 
 export default async function Home() {
@@ -22,12 +23,12 @@ export default async function Home() {
           &mdash; plus indie games and developer tools along the way.
         </p>
         <div className={styles.heroCtas}>
-          <a href="/contact" className="btnPrimary">
+          <Link href="/contact" className="btnPrimary">
             Get in Touch
-          </a>
-          <a href="/projects" className="btnSecondary">
+          </Link>
+          <Link href="/projects" className="btnSecondary">
             View Projects
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -118,13 +119,13 @@ export default async function Home() {
             {featured && (
               <ScrollReveal animation="fade-up" delay={100}>
                 <article className={styles.featured}>
-                  <a href={`/blog/${featured.slug}`}>
+                  <Link href={`/blog/${featured.slug}`}>
                     <time className={styles.date}>
                       {formatDate(featured.date)}
                     </time>
                     <h3 className={styles.featuredTitle}>{featured.title}</h3>
                     <p className={styles.excerpt}>{featured.excerpt}</p>
-                  </a>
+                  </Link>
                 </article>
               </ScrollReveal>
             )}
@@ -134,13 +135,13 @@ export default async function Home() {
                 {recentPosts.map((post) => (
                   <StaggerItem key={post.slug}>
                     <article className={styles.postItem}>
-                      <a href={`/blog/${post.slug}`}>
+                      <Link href={`/blog/${post.slug}`}>
                         <time className={styles.date}>
                           {formatDate(post.date)}
                         </time>
                         <h3 className={styles.postTitle}>{post.title}</h3>
                         <p className={styles.excerpt}>{post.excerpt}</p>
-                      </a>
+                      </Link>
                     </article>
                   </StaggerItem>
                 ))}
