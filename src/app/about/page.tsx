@@ -42,7 +42,7 @@ export default function AboutPage() {
           </ScrollReveal>
           <ScrollReveal animation="fade-left" delay={200}>
             <img
-              src="/images/headshot.jpg"
+              src="/blog/images/headshot.jpg"
               alt="Jon Kloss"
               className={styles.headshot}
             />
