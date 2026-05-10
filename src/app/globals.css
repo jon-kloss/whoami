@@ -10,17 +10,6 @@
   --accent: oklch(0.38 0.12 148);
   --accent-hover: oklch(0.32 0.10 148);
   --accent-surface: oklch(0.93 0.03 148);
-}
-
-[data-theme="dark"] {
-  --bg: oklch(0.16 0.01 148);
-  --surface: oklch(0.20 0.012 148);
-  --border: oklch(0.28 0.015 148);
-  --text: oklch(0.92 0.005 148);
-  --text-muted: oklch(0.65 0.01 148);
-  --accent: oklch(0.65 0.15 148);
-  --accent-hover: oklch(0.72 0.13 148);
-  --accent-surface: oklch(0.22 0.03 148);
 
   /* Spacing */
   --space-xs: 0.25rem;
@@ -45,6 +34,17 @@
   --font-heading: var(--font-instrument-serif), Georgia, serif;
   --font-body: 'General Sans', -apple-system, sans-serif;
   --font-mono: var(--font-jetbrains-mono), monospace;
+}
+
+[data-theme="dark"] {
+  --bg: oklch(0.16 0.01 148);
+  --surface: oklch(0.20 0.012 148);
+  --border: oklch(0.28 0.015 148);
+  --text: oklch(0.92 0.005 148);
+  --text-muted: oklch(0.65 0.01 148);
+  --accent: oklch(0.65 0.15 148);
+  --accent-hover: oklch(0.72 0.13 148);
+  --accent-surface: oklch(0.22 0.03 148);
 }
 
 /* Reset */
