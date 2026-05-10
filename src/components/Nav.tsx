@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import styles from "./Nav.module.css";
 
@@ -9,6 +10,8 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastY = useRef(0);
+  const pathname = usePathname();
+  const isHome = pathname === "/" || pathname === "";
 
   useEffect(() => {
     const onScroll = () => {
@@ -41,19 +44,19 @@ export function Nav() {
       </Link>
       <ul className={styles.navLinks}>
         <li>
-          <Link href="/projects">Projects</Link>
+          {isHome ? <a href="#about">About</a> : <Link href="/#about">About</Link>}
         </li>
         <li>
-          <Link href="/blog">Blog</Link>
+          {isHome ? <a href="#experience">Experience</a> : <Link href="/#experience">Experience</Link>}
         </li>
         <li>
-          <Link href="/about">About</Link>
+          {isHome ? <a href="#projects">Projects</a> : <Link href="/#projects">Projects</Link>}
         </li>
         <li>
-          <Link href="/resume">Resume</Link>
+          {isHome ? <a href="#writing">Blog</a> : <Link href="/#writing">Blog</Link>}
         </li>
         <li>
-          <Link href="/contact">Contact</Link>
+          {isHome ? <a href="#contact">Contact</a> : <Link href="/#contact">Contact</Link>}
         </li>
         <li>
           <ThemeToggle />

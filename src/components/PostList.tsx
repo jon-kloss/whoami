@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { formatDate } from "@/lib/format";
 import Link from "next/link";
-import styles from "./blog.module.css";
+import styles from "./PostList.module.css";
 
 interface Post {
   slug: string;

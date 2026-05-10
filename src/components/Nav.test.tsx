@@ -1,17 +1,21 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { Nav } from "./Nav";
 
+vi.mock("next/navigation", () => ({
+  usePathname: () => "/",
+}));
+
 describe("Nav", () => {
-  // Scenario: Navigation renders on all pages
-  it("shows links to Projects, Blog, About, Resume, Contact with correct hrefs", () => {
+  // Scenario: Navigation renders on all pages (SPA anchor links)
+  it("shows links to About, Experience, Projects, Blog, Contact with correct hrefs", () => {
     render(<Nav />);
 
-    expect(screen.getByRole("link", { name: /projects/i })).toHaveAttribute("href", "/projects");
-    expect(screen.getByRole("link", { name: /blog/i })).toHaveAttribute("href", "/blog");
-    expect(screen.getByRole("link", { name: /about/i })).toHaveAttribute("href", "/about");
-    expect(screen.getByRole("link", { name: /resume/i })).toHaveAttribute("href", "/resume");
-    expect(screen.getByRole("link", { name: /contact/i })).toHaveAttribute("href", "/contact");
+    expect(screen.getByRole("link", { name: /about/i })).toHaveAttribute("href", "#about");
+    expect(screen.getByRole("link", { name: /experience/i })).toHaveAttribute("href", "#experience");
+    expect(screen.getByRole("link", { name: /projects/i })).toHaveAttribute("href", "#projects");
+    expect(screen.getByRole("link", { name: /blog/i })).toHaveAttribute("href", "#writing");
+    expect(screen.getByRole("link", { name: /contact/i })).toHaveAttribute("href", "#contact");
   });
 
   it("shows site logo '{/}' linking to home page", () => {
